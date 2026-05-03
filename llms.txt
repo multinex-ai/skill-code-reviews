@@ -1,0 +1,11 @@
+# Code Reviews Skill
+
+This package provides the `SKILL.md` configuration for the Multinex Code Reviews AI Agent.
+
+## Capabilities
+- Analyzes `git diff` outputs for violations of the Multinex architecture guidelines.
+- Enforces strict typing (no `any`), checks for `// TODO` placeholders, and validates security/Airlock rules.
+- Outputs direct and severe code reviews highlighting the exact lines violating the constitution.
+
+## Usage
+Inject `SKILL.md` into your LLM's system prompt to activate these capabilities. The agent will require tool access to `run_shell_command` and `read_file` to execute `git diff` and inspect local modifications.

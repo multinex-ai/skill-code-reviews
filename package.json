@@ -1,0 +1,23 @@
+{
+  "name": "@multinex/skill-code-reviews",
+  "version": "1.0.0",
+  "description": "Multinex Code Reviews AI Skill. Evaluates PRs against constitutional guidelines.",
+  "main": "SKILL.md",
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Multinex AI <engineering@multinex.ai>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/multinex-ai/skill-code-reviews.git"
+  },
+  "keywords": [
+    "ai",
+    "agent",
+    "skill",
+    "multinex",
+    "code-review",
+    "constitution"
+  ]
+}
