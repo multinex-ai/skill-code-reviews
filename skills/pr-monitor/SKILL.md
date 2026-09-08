@@ -1,6 +1,6 @@
 ---
 name: pr-monitor
-description: Monitor GitHub PR feedback and CI, verify and fix findings, restack branches, answer and resolve conversations, request fresh review, and manage authorized merges. Use for existing PRs or PR stacks, including outstanding-feedback and readiness audits.
+description: Monitor GitHub PR feedback and CI, verify and fix findings, restack branches, answer and resolve conversations, request fresh review, manage authorized merges, and reconcile PRs and worktrees after merging. Use for existing PRs or PR stacks, including outstanding-feedback and readiness audits.
 ---
 
 # PR Monitor
@@ -69,8 +69,9 @@ certificate. Missing access or moving refs must never become a zero-findings cla
    code/test/CI links. Check for an equivalent existing reply before posting.
    Resolve only after verification and a posted reply. Outdated does not mean
    addressed. A duplicate still needs a link to its verified resolution.
-7. Request fresh human review after changes. Resolving threads does not clear a
-   submitted CHANGES_REQUESTED review. Request re-review; dismiss an obsolete
+7. Request fresh human review when the effective scope changes or repository
+   rules require it; do not spam reviewers for unchanged evidence. Resolving
+   threads does not clear a submitted CHANGES_REQUESTED review. Request re-review; dismiss an obsolete
    review only when the user and repository authorize it, with fix evidence.
    Never dismiss a review merely to obtain green status.
 8. Refresh briefs and any existing consolidated request with current SHAs,
@@ -78,6 +79,11 @@ certificate. Missing access or moving refs must never become a zero-findings cla
    only changed evidence to avoid repeated history growth. Measure size against
    the immediate base. Split or record a scoped exception only under applicable
    authorization; never invent an exception.
+9. After each verified merge, follow [post-merge.md](references/post-merge.md):
+   reconcile descendants and PR evidence, then clean only authorized, idle,
+   fully landed worktrees and refs. Preserve held parents, active/user/demo
+   worktrees, unknown files, and refs still needed by descendants. Report retained
+   items with reasons; do not treat a merge as proof cleanup is safe.
 
 Read [operations.md](references/operations.md) for race handling, reply examples,
 merge/restack mechanics, and checkpoints.
@@ -88,7 +94,8 @@ Re-read GitHub after mutations. Verify pushes, replies, resolutions, review
 requests, and CI actually exist. List new comments until handled; never reuse
 an earlier zero-outstanding claim. Report outstanding links and next actions,
 fixed/pushed versus pending CI/review/approval, next merge and dependency chain,
-merged-to-parent versus integrated versus deployed, and unrun live checks.
+merged-to-parent versus integrated versus deployed, unrun live checks, and
+post-merge PR/ref/worktree actions completed or retained with reasons.
 
 Keep a private repository-scoped checkpoint with authorization, SHAs, handled
 comment IDs, evidence URLs, and next actions. Record no secrets or customer

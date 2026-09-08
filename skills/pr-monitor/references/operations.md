@@ -43,11 +43,20 @@ independent/human approval, no outstanding required conversations, current
 integration checks, non-draft state, correct target, and satisfied dependencies
 or an approved queue enforcing them. Credentials alone are not authorization.
 Never self-approve, bypass protection, or use admin merge to clear a blocker.
+Use the actual required approval count and CODEOWNERS rules. If one eligible
+human approval satisfies them, do not wait for every requested reviewer. Keep
+explicit parent-merge and deployment holds until the user changes them; other
+merge authorization does not lift those holds.
 
 Verify reviewed head AND base. GitHub review commit_id records the head, not its
 reviewed base. Use repository evidence or fresh review; do not infer base coverage
 from an approval badge. A permitted range-diff assessment can support an unchanged
 restack, but cannot replace required platform approvals.
+
+Inspect the configured queue's behavior before invoking it: some native stack
+operations also merge ancestors. If a parent must remain open, do not submit a
+stack operation that would merge it. Safely detach/reconcile the eligible child
+when that is authorized, or keep it pending.
 
 Use the configured queue and merge method. Preserve the old parent tip and each
 child's unique range before merging. After a squash, rebase descendants' unique
@@ -55,6 +64,8 @@ commits onto the new integration tip; a simple base retarget can reintroduce the
 squashed parent. Retarget direct children, retain deeper relationships, inspect
 range-diffs, test, push with leases, and renew evidence. Keep parent refs until
 children no longer need them. Verify the remote merge commit before claiming it.
+Then run [post-merge hygiene and cleanup](post-merge.md), including PR evidence,
+remote refs, and local worktrees; preserve the ledger until reconciliation is proven.
 
 ## Checkpoint and watch
 
