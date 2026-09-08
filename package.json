@@ -1,7 +1,7 @@
 {
   "name": "@multinex/skill-code-reviews",
-  "version": "1.0.0",
-  "description": "Multinex Code Reviews AI Skill. Evaluates PRs against constitutional guidelines.",
+  "version": "1.1.0",
+  "description": "Multinex code review and PR monitoring skills: verified feedback fixes, CI triage, stack maintenance, and authorized merges.",
   "main": "SKILL.md",
   "publishConfig": {
     "access": "public"
@@ -18,6 +18,27 @@
     "skill",
     "multinex",
     "code-review",
-    "constitution"
-  ]
+    "constitution",
+    "pull-request",
+    "pr-monitor",
+    "ci",
+    "stacked-prs"
+  ],
+  "bin": {
+    "pr-monitor": "skills/pr-monitor/scripts/cli.mjs"
+  },
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "llms.txt",
+    "skills/"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "prepack": "npm test",
+    "prepublishOnly": "npm test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
 }

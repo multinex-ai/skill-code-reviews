@@ -9,3 +9,10 @@ This package provides the `SKILL.md` configuration for the Multinex Code Reviews
 
 ## Usage
 Inject `SKILL.md` into your LLM's system prompt to activate these capabilities. The agent will require tool access to `run_shell_command` and `read_file` to execute `git diff` and inspect local modifications.
+
+## PR Monitor (1.1.0 candidate)
+
+- [Skill](skills/pr-monitor/SKILL.md): `$pr-monitor owner/repo` for a feedback sweep; add `status` for read-only auditing or a bounded `watch` duration.
+- [Operations](skills/pr-monitor/references/operations.md): replies, evidence freshness, merge gates, and post-squash restacking.
+- `pr-monitor snapshot owner/repo`: read-only metadata inventory through authenticated GitHub CLI.
+- `pr-monitor install --into <skills-directory>`: explicit local installation; never overwrites an existing skill.
