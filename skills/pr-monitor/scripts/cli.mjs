@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { mkdirSync, copyFileSync, constants, existsSync, readFileSync, readdirSync, realpathSync, writeFileSync } from 'node:fs';
-import { dirname, resolve, join, relative, isAbsolute } from 'node:path';
+import { dirname, resolve, join, relative, isAbsolute, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { GitHub } from './github.mjs';
 import { snapshot } from './snapshot.mjs';
@@ -28,7 +28,8 @@ export function install(into) {
   while (!existsSync(existing)) { suffix.unshift(existing.split('/').pop()); existing = dirname(existing); }
   const canonicalTarget = join(realpathSync(existing), ...suffix, 'pr-monitor');
   const within = relative(realpathSync(source), canonicalTarget);
-  if (!within || (!within.startsWith('..') && !isAbsolute(within))) throw new Error('Cannot install inside the source skill');
+  const outside = within === '..' || within.startsWith(`..${sep}`) || isAbsolute(within);
+  if (!outside) throw new Error('Cannot install inside the source skill');
   mkdirSync(parent, {recursive: true});
   mkdirSync(target, {mode: 0o700}); // Exclusive: existing directories/symlinks fail.
   function copy(from, to) {

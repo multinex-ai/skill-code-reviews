@@ -112,6 +112,12 @@ test('installer rejects installing recursively inside its source', () => {
   symlinkSync(resolve('skills/pr-monitor'),join(root,'source'));
   assert.throws(()=>install(join(root,'source','scripts')),/inside/);
 });
+test('installer rejects descendants whose directory name starts with two dots', () => {
+  const target=resolve('skills/pr-monitor/..cache');
+  assert.equal(existsSync(target),false);
+  assert.throws(()=>install(target),/inside/);
+  assert.equal(existsSync(target),false);
+});
 test('CLI rejects overwriting evidence, unsupported auth flags, and duplicate options before network access', () => {
   const root=mkdtempSync(join(tmpdir(),'pr-monitor-output-')), output=join(root,'evidence.json');
   writeFileSync(output,'prior evidence');
