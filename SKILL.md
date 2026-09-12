@@ -24,3 +24,9 @@ When invoked:
 2. Analyze the changes against the rules above.
 3. Output a structured, severe, and direct code review. 
 4. If there are violations, explicitly state the line number and the constitutional rule broken.
+
+## Existing PR feedback and monitoring
+
+For addressing review comments, CI failures, branch restacking, review requests,
+or authorized merges, use [PR Monitor](skills/pr-monitor/SKILL.md). It follows
+the target repository's own rules and preserves the current user's authorization.

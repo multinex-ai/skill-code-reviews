@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Monitor"
+  short_description: "Verify feedback, fix CI, and manage PR stacks"
+  default_prompt: "Use $pr-monitor to handle feedback and CI for the current repository and report review and merge readiness."
